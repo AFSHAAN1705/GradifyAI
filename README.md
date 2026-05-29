@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ValidatorAI KCET
 
 ValidatorAI is a Karnataka-only KCET and KEA engineering counselling platform with a separated frontend/backend architecture.
@@ -122,3 +123,7 @@ Database: create a MongoDB Atlas cluster, database user, and network access rule
 - Auth uses JWT plus an HTTP-only cookie.
 - PDF ingestion returns imported, skipped, and failed row samples.
 - No migration setup is needed.
+=======
+# GradifyAI
+GradifyAI is an AI-powered KCET counselling platform for Karnataka students. It analyzes KEA cutoff data, rank, category, district, and branch preferences to predict admission chances, recommend suitable colleges, and provide personalized guidance, helping students make informed admission decisions.
+>>>>>>> e696eab43e222453bd0eb0c2bfb4b075c6065948

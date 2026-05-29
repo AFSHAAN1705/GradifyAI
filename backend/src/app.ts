@@ -34,7 +34,9 @@ export function createApp() {
   app.use("/uploads", express.static(path.resolve(env.UPLOAD_DIR)));
 
   app.use(apiRoutes);
-  logger.info("Auth routes initialized");
+  logger.info("All API routes initialized", {
+    routes: ["auth", "ai", "colleges", "cutoffs", "predict", "admin", "upload", "college-intelligence", "misc"],
+  });
   app.use(notFoundMiddleware);
   app.use(errorMiddleware);
 

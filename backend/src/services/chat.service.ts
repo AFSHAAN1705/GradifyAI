@@ -1,4 +1,4 @@
-import { Types } from "mongoose";
+import mongoose, { Types } from "mongoose";
 import { env } from "../config/env";
 import { ConversationModel } from "../models/conversation.model";
 import { KnowledgeBaseModel } from "../models/knowledge-base.model";
@@ -31,6 +31,14 @@ type GeminiResponse = {
 type OpenAIResponse = {
   output_text?: string;
   output?: Array<{ content?: Array<{ text?: string }> }>;
+};
+
+const APP_START_TIME = Date.now();
+const MONGO_STATE_MAP: Record<number, string> = {
+  0: "disconnected",
+  1: "connected",
+  2: "connecting",
+  3: "disconnecting",
 };
 
 const SAM_SYSTEM_PROMPT = `You are SAM, the GradifyAI premium AI-powered Karnataka engineering admission counsellor for KCET and COMED-K counselling.
@@ -608,14 +616,27 @@ export async function generateStrategy(ctx: UserContext) {
 // ─── Health Check ────────────────────────────────────────────────────────────
 
 export function getSamHealth() {
-  const geminiOnline = !!env.GEMINI_API_KEY;
+  const mongoState = mongoose.connection.readyState;
+  const geminiConfigured = !!env.GEMINI_API_KEY;
+  const openaiConfigured = !!env.OPENAI_API_KEY;
   return {
-    provider: geminiOnline ? "gemini" : "none",
-    status: geminiOnline ? "online" : "offline",
-    model: env.GEMINI_MODEL,
-    geminiConfigured: geminiOnline,
-    openaiConfigured: !!env.OPENAI_API_KEY,
-    mode: geminiOnline || !!env.OPENAI_API_KEY ? "ai" : "fallback",
+    status: "ok",
+    mongodb: {
+      status: MONGO_STATE_MAP[mongoState] ?? "unknown",
+      database: mongoose.connection.name ?? null,
+      host: mongoose.connection.host ?? null,
+    },
+    gemini: {
+      configured: geminiConfigured,
+      model: env.GEMINI_MODEL,
+    },
+    openai: {
+      configured: openaiConfigured,
+      model: env.OPENAI_MODEL,
+    },
+    mode: geminiConfigured || openaiConfigured ? "ai" : "fallback",
+    version: "1.0.0",
+    uptime: Math.floor((Date.now() - APP_START_TIME) / 1000),
   };
 }
 

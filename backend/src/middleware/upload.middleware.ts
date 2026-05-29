@@ -35,5 +35,5 @@ export const uploadSamFile = multer({
     }
   }
 });
-
+export const uploadPdf = uploadSamFile;
 export { ALLOWED_TYPES };

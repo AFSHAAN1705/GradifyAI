@@ -243,7 +243,7 @@ export async function predictAdmissions(input: PredictionRequest, userId?: strin
     );
   }
 
-  const uniqueCollegeIds = [...new Set(candidates.map((c) => c.collegeId._id.toString()))];
+  const uniqueCollegeIds = [...new Set(candidates.map((c) => (c.collegeId._id as any).toString()))];
   const qualityMap = new Map<string, CollegeQualityData>();
 
   if (uniqueCollegeIds.length > 0) {
@@ -303,7 +303,7 @@ export async function predictAdmissions(input: PredictionRequest, userId?: strin
       const tier = tierFor(rankGap);
       const confidence = confidenceFor(candidate.rankClose, input.examRank, movement);
 
-      const collegeIdStr = candidate.collegeId._id.toString();
+      const collegeIdStr = (candidate.collegeId._id as any).toString();
       const quality = qualityMap.get(collegeIdStr) ?? {
         placementRate: null, averagePackage: null, highestPackage: null,
         naacGrade: "", autonomous: false, nirfRank: null,

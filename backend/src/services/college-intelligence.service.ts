@@ -167,7 +167,7 @@ export async function getEnhancedCollegeDetail(collegeId: string) {
     })),
 
     branchAnalytics: (college.branchIds as unknown as Array<{ _id: unknown; code: string; name: string }>).map((branch) => {
-      const branchPlacements = placementByBranch[branch._id.toString()] ?? [];
+      const branchPlacements = placementByBranch[(branch._id as any).toString()] ?? [];
       const latest = branchPlacements[0];
       return {
         code: branch.code,

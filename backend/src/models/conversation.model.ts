@@ -47,7 +47,7 @@ function cleanContextFields(this: Record<string, unknown>) {
   }
 }
 conversationSchema.pre("save", function (next) {
-  cleanContextFields.call(this);
+  cleanContextFields.call(this as any);
   next();
 });
 

@@ -1,0 +1,52 @@
+{
+  "name": "gradify-ai-backend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node --watch dist/server.js",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/server.js",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "seed": "node dist/scripts/seed-database.js",
+    "ingest:cutoffs": "node dist/scripts/ingest-cutoffs.js",
+    "import-pdfs": "node dist/scripts/import-pdfs.js",
+    "create-admin": "node dist/scripts/create-admin.js",
+    "seed-admin": "node dist/scripts/create-admin.js",
+"fix-districts": "node dist/scripts/fix-districts.js",
+    "postinstall": "npm run build",
+    "dev:tsx": "tsx watch src/server.ts",
+    "seed:tsx": "tsx src/scripts/seed-database.ts",
+    "create-admin:tsx": "tsx src/scripts/create-admin.ts"
+  },
+  "dependencies": {
+    "bcryptjs": "3.0.3",
+    "compression": "1.8.1",
+    "cookie-parser": "1.4.7",
+    "cors": "2.8.5",
+    "dotenv": "17.2.3",
+    "express": "5.1.0",
+    "express-rate-limit": "8.2.1",
+    "helmet": "8.1.0",
+    "jsonwebtoken": "9.0.2",
+    "mongoose": "8.20.2",
+    "morgan": "1.10.1",
+    "multer": "2.0.2",
+    "pdf-parse": "1.1.1",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.39.1",
+    "@types/compression": "1.8.1",
+    "@types/cookie-parser": "1.4.10",
+    "@types/cors": "2.8.19",
+    "@types/express": "5.0.6",
+    "@types/jsonwebtoken": "9.0.10",
+    "@types/morgan": "1.9.10",
+    "@types/multer": "2.0.0",
+    "@types/node": "24.10.1",
+    "eslint": "9.39.1",
+    "tsx": "4.21.0",
+    "typescript": "6.0.3"
+  }
+}

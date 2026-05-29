@@ -1,0 +1,229 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  --background: #0d1117;
+  --foreground: #e6edf3;
+  --muted: #8b949e;
+  --border: #30363d;
+  --primary: #58a6ff;
+  --primary-foreground: #0d1117;
+  --accent: #bc8cff;
+  --success: #3fb950;
+  --warning: #d29922;
+  --danger: #f85149;
+  --surface: #161b22;
+  --surface-strong: #0d1117;
+  --card-bg: #161b22;
+  --card-hover: rgba(88, 166, 255, 0.12);
+  --bg-gradient-1: rgba(88, 166, 255, 0.05);
+  --bg-gradient-2: rgba(188, 140, 255, 0.05);
+  --grid-line: rgba(255, 255, 255, 0.03);
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+  --glow: rgba(88, 166, 255, 0.35);
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --background: #ffffff;
+  --foreground: #1f2328;
+  --muted: #656d76;
+  --border: #d0d7de;
+  --primary: #0969da;
+  --primary-foreground: #ffffff;
+  --accent: #8250df;
+  --success: #1a7f37;
+  --warning: #9a6700;
+  --danger: #cf222e;
+  --surface: #f6f8fa;
+  --surface-strong: #ffffff;
+  --card-bg: #ffffff;
+  --card-hover: rgba(9, 105, 218, 0.08);
+  --bg-gradient-1: rgba(9, 105, 218, 0.04);
+  --bg-gradient-2: rgba(130, 80, 223, 0.04);
+  --grid-line: rgba(0, 0, 0, 0.04);
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --glow: rgba(9, 105, 218, 0.2);
+}
+
+[data-theme="amoled"] {
+  color-scheme: dark;
+  --background: #000000;
+  --foreground: #c9d1d9;
+  --muted: #6e7681;
+  --border: #21262d;
+  --primary: #58a6ff;
+  --primary-foreground: #000000;
+  --accent: #bc8cff;
+  --success: #3fb950;
+  --warning: #d29922;
+  --danger: #f85149;
+  --surface: #0d1117;
+  --surface-strong: #000000;
+  --card-bg: #0d1117;
+  --card-hover: rgba(88, 166, 255, 0.1);
+  --bg-gradient-1: rgba(88, 166, 255, 0.04);
+  --bg-gradient-2: rgba(188, 140, 255, 0.04);
+  --grid-line: rgba(255, 255, 255, 0.02);
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --glow: rgba(88, 166, 255, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--glow);
+  outline-offset: 2px;
+}
+
+.glass {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.glass-card {
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  box-shadow: var(--shadow);
+}
+
+.glow-border {
+  border: 1px solid var(--border);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.glow-border:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.15);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+/* Prediction results scrollable container */
+.prediction-scroll {
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+@media (min-width: 768px) {
+  .prediction-scroll {
+    max-height: 500px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .prediction-scroll {
+    max-height: 700px;
+  }
+}
+
+.prediction-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.prediction-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.prediction-scroll::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+.prediction-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* Custom thin scrollbar for insights panel */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+/* Gradient backgrounds for premium feel */
+.premium-gradient {
+  background: linear-gradient(135deg, var(--bg-gradient-1), var(--bg-gradient-2));
+}
+
+/* Recharts responsive overrides */
+.recharts-responsive-container {
+  min-height: 0 !important;
+}
+
+/* Smooth transitions for theme changes */
+html[data-theme] * {
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+html[data-theme] *,
+html[data-theme] *::before,
+html[data-theme] *::after {
+  transition-property: background, background-color, color, border-color, box-shadow;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}

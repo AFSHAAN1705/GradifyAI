@@ -1,7 +1,7 @@
 import { Router } from "express";
 import * as adminController from "../controllers/admin.controller";
 import { requireAuth, requireAdmin } from "../middleware/auth.middleware";
-import { uploadPdf } from "../middleware/upload.middleware";
+import { uploadSamFile } from "../middleware/upload.middleware";
 
 export const adminRoutes = Router();
 
@@ -16,7 +16,7 @@ adminRoutes.get("/import-logs", adminController.getImportLogsController);
 adminRoutes.get("/import-logs/:id", adminController.getImportLogByIdController);
 
 // PDF Upload (replaces the old upload endpoint with logging)
-adminRoutes.post("/upload-pdf", uploadPdf.single("file"), adminController.uploadPdfWithLogController);
+adminRoutes.post("/upload-pdf", uploadSamFile.single("file"), adminController.uploadPdfWithLogController);
 
 // College Management
 adminRoutes.get("/colleges", adminController.getCollegesController);
